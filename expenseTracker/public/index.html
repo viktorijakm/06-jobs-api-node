@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Login</title>
+    <link rel="stylesheet" href="style.css"> 
+
+<body>
+    <h1>Expense Tracker Login</h1>
+
+  <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <h1>Protected Route</h1>
+    <button id="accessHello">Access Protected Route</button>
+    <pre id="response"></pre>
+
+    <script src="./browser-app.js"></script>
+</body>
+</html>
