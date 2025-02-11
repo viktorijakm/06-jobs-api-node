@@ -12,8 +12,14 @@ const verifyToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ error: 'Invalid or expired token' });
         }
+
+
+        console.log("Decoded Token:", decoded);
+
+
+
         // Attach user data to the request object
-        req.user = decoded;
+        req.user = { userId:decoded.userId };
         
         next();  // Proceed to the next middleware or route handler
     });
