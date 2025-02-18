@@ -10,13 +10,17 @@ const {
   deleteExpense,
 } = require("../controllers/expenseController");
 
+// Import the authMiddleware to protect the routes
+const authMiddleware = require("../middleware/auth");
+
 router.route("/")
-.get(getAllExpenses)
-.post(createExpense);
+.get(authMiddleware,getAllExpenses)
+.post(authMiddleware, createExpense);
+
 
 router.route("/:id")
-  .get(getSingleExpense)
-  .patch(updateExpense)
-  .delete(deleteExpense);
+  .get(authMiddleware,getSingleExpense)
+  .patch(authMiddleware, updateExpense)
+  .delete(authMiddleware, deleteExpense);
 
 module.exports = router;
