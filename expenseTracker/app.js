@@ -38,13 +38,12 @@ const authRoutes = require('./routes/authRoutes')
 
 //middleware
 app.use(express.static('./public'))
-
-//middleware to parse JSON
 app.use(express.json())
 
+app.use('/api/v1', authRoutes)
 //base routes
 app.use('/api/v1/expenses', verifyToken, expenseRoutes)
-app.use('/api/v1', authRoutes)
+
 
 //middleware handling errors
 app.use(notFoundMiddleware)
@@ -56,8 +55,9 @@ const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
 
-        app.listen(port, console.log(`Server is listening on port ${port}...`))
-    } catch (error) {
+        app.listen(port,() => { console.log(`Server is listening on port ${port}...`);
+    });
+   } catch (error) {
         console.log(error)
     }
 }

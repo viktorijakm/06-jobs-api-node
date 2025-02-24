@@ -37,7 +37,7 @@ const createExpense = async (req, res) => {
       amount,
       category,
       date,
-      createdBy: req.user.userId
+      createdBy: req.user.userId,
     });
 
     await newExpense.save();
