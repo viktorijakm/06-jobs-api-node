@@ -1,0 +1,19 @@
+paths:
+  /api/v1/expenses:
+    get:
+      summary: Get all expenses
+      responses:
+        200:
+          description: List of expenses
+    post:
+      summary: Add new expense
+      responses:
+        201:
+          description: Expense created
+  /api/v1/expenses/{id}:
+    get:
+      summary: Get expense by ID
+    patch:
+      summary: Update expense
+    delete:
+      summary: Delete expense
