@@ -17,6 +17,12 @@ const authenticateUser = require('./middleware/authentication')
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
+
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+
 // Routes
 const authRouter = require('./routes/auth')
 const expensesRouter = require('./routes/expenses')
@@ -39,6 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Routes
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/expenses', authenticateUser, expensesRouter)
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // Root route
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')))
