@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
-// Security packages
+// extra Security packages
 const helmet = require('helmet')
 const cors = require('cors')
 const xss = require('xss-clean')

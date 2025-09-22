@@ -7,21 +7,22 @@
 </head>
 <body>
   <h1>Expense Tracker</h1>
+<button id="logoutBtn">Logout</button>
 
-  <!-- Form for adding expenses -->
-  <form id="expenseForm">
-    <input type="text" id="title" placeholder="Title" required />
-    <input type="number" step="0.01" id="amount" placeholder="Amount" required />
-    <input type="text" id="category" placeholder="Category" required />
-    <input type="date" id="date" required />
-    <button type="submit">Add Expense</button>
-  </form>
+<!-- Form for adding expenses -->
+<form id="expenseForm">
+  <input type="text" id="title" placeholder="Title" required />
+  <input type="number" step="0.01" id="amount" placeholder="Amount" required />
+  <input type="text" id="category" placeholder="Category" required />
+  <input type="date" id="date" required />
+  <button type="submit">Add Expense</button>
+</form>
 
-  <h2>Your Expenses</h2>
-  <ul id="expensesList"></ul>
+<h2>Your Expenses</h2>
+<ul id="expensesList"></ul>
 
-  <p id="response"></p>
+<p id="response"></p>
 
-  <script src="expenses.js"></script>
+<script src="expenses.js"></script>
 </body>
 </html>

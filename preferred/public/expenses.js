@@ -1,14 +1,21 @@
-let token = localStorage.getItem("token"); // get saved token from login
+let token = localStorage.getItem("token");
 const expenseForm = document.getElementById("expenseForm");
 const expensesList = document.getElementById("expensesList");
 const responseDiv = document.getElementById("response");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // Redirect if no token
 if (!token) {
-  window.location.href = "index.html"; // back to login page
+  window.location.href = "login.html";
 }
 
-// Fetch all expenses
+// Logout
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+});
+
+// Load expenses
 async function loadExpenses() {
   try {
     const res = await fetch("/api/v1/expenses", {
@@ -17,13 +24,13 @@ async function loadExpenses() {
     const data = await res.json();
     if (res.ok) {
       expensesList.innerHTML = "";
-      data.forEach((exp) => {
+      data.expenses.forEach((exp) => {
         const li = document.createElement("li");
         li.textContent = `${exp.title} - $${exp.amount} (${exp.category}) on ${new Date(exp.date).toLocaleDateString()}`;
         expensesList.appendChild(li);
       });
     } else {
-      responseDiv.textContent = data.error || "Failed to fetch expenses.";
+      responseDiv.textContent = data.msg || "Failed to fetch expenses.";
     }
   } catch (err) {
     console.error(err);
@@ -31,7 +38,7 @@ async function loadExpenses() {
   }
 }
 
-// Add new expense
+// Add expense
 expenseForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const title = document.getElementById("title").value;
@@ -54,7 +61,7 @@ expenseForm.addEventListener("submit", async (e) => {
       expenseForm.reset();
       loadExpenses();
     } else {
-      responseDiv.textContent = data.error || "Failed to add expense.";
+      responseDiv.textContent = data.msg || "Failed to add expense.";
     }
   } catch (err) {
     console.error(err);
@@ -62,5 +69,5 @@ expenseForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Load expenses when page opens
+// Initial load
 loadExpenses();
