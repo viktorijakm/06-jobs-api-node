@@ -49,7 +49,7 @@ app.use('/api/v1/expenses', authenticateUser, expensesRouter)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // Root route
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')))
 
 // Error handling
 app.use(notFoundMiddleware)
